@@ -4,6 +4,7 @@ import { User } from "../models/user";
 import jwt from "jsonwebtoken";
 import { BadRequestError } from "../errors";
 import { validateRequest } from "../middlewares";
+import { sendUserGenerationEvent } from "../events";
 
 const router = express.Router();
 
@@ -39,6 +40,8 @@ router.post(
       },
       process.env.JWT_SECRET!
     );
+
+    sendUserGenerationEvent({ email: user.email });
 
     res.send({ token: userJwt });
 
