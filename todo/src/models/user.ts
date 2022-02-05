@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
-import { Password } from "../services/password";
 
 interface UserAttr {
   email: string;
-  password: string;
 }
 
 // an interface that describe
@@ -27,10 +25,6 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    password: {
-      type: String,
-      required: true,
-    },
   },
   {
     toJSON: {
@@ -41,17 +35,6 @@ const UserSchema = new mongoose.Schema(
     },
   }
 );
-
-// hash password before save
-
-UserSchema.pre("save", async function (done) {
-  if (this.isModified("password")) {
-    const hashed = await Password.toHash(this.get("password"));
-    this.set("password", hashed);
-  }
-
-  done();
-});
 
 // build user is used to strictly check
 // type checking and properties of object
