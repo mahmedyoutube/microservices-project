@@ -2,11 +2,27 @@
 
 #### master branch
 
-containing all the services with a different port ( starting from 4000, 4001 depending upon the number of services except Front end services which are running on port 3000 )
+contain single backend just like normal backend
+
+
+#### services branch
+
+features are splitted into separate services without communication between them
+
 
 #### docker branch
 
 containing all services with docker configuration with different port
+
+
+#### services-simple-com branch
+
+services simply connected with each other ( just to show how to sent event from one service to another - not recommeneded for professional use )
+
+#### services-event-bus branch
+
+services are connected with each - recommended
+
 
 #### docker-kubernetes branch
 
