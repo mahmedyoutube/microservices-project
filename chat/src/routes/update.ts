@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { NotFoundError } from "../errors";
+import { updateChatEvent } from "../events";
 import { currentUser, requireAuth } from "../middlewares";
 import { Chat } from "../models/chat";
 
@@ -24,6 +25,8 @@ router.patch(
     }
     chat.message = message;
     await chat.save();
+
+    updateChatEvent({ message, chatId: chat.id });
 
     res.send(chat);
   }

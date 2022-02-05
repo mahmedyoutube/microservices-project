@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import mongoose from "mongoose";
+import { sendChatEvent } from "../events";
 import { currentUser, requireAuth } from "../middlewares";
 import { Chat } from "../models/chat";
 
@@ -25,10 +26,17 @@ router.post(
       message,
       todoId,
       fromUserId: req.currentUser!.id,
-      //@ts-ignore
-      toUserId: mongoose.Types.ObjectId(toUserId),
+      toUserId,
     });
     await chat.save();
+
+    sendChatEvent({
+      message,
+      todoId,
+      fromUserId: req.currentUser!.id,
+      toUserId,
+      chatId: chat.id,
+    });
 
     res.send(chat);
   }

@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { currentUser, requireAuth } from "../middlewares";
 import { body } from "express-validator";
 import { Todo } from "../models/todo";
+import { sendTodoEvent } from "../events";
 
 const router = express.Router();
 
@@ -25,6 +26,13 @@ router.post(
     });
 
     await todo.save();
+
+    sendTodoEvent({
+      heading,
+      description,
+      userId: req.currentUser!.id,
+      todoId: todo.id,
+    });
 
     res.send(todo);
   }

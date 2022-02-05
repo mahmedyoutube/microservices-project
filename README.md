@@ -1,17 +1,12 @@
-## Docker Branch
+## services-simple-com Branch
 
-1. In this branch, each service is dockerized
-2. Hot reload option is not present in it
+1. In this branch, each service is connected with each other by API based event bus
+2. API based Event bus logic which is used in this branch, can be used for smaller projects ( not preferable )
 
 
-### Docker commands
+#### Commands
 
-1. docker build -t yourdockerusername/serviceName . (example mahmedyoutube/auth, mahmedyoutube/chat and so on) 
-2. docker run -p mappingUniquePort:servicePort yourdockerusername/serviceName
-
-#### Shortcut
-
-1. docker compose up
+1. docker compose up --build
 2. docker compose down
 
 

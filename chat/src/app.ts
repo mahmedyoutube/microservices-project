@@ -10,6 +10,7 @@ import {
   deleteChatRouter,
   updateChatRouter,
 } from "./routes";
+import { registerEvents } from "./events";
 
 const app = express();
 // app.set("trust proxy", true);
@@ -26,6 +27,8 @@ app.use("/api/chat", allChatRouter);
 app.use("/api/chat/create", createChatRouter);
 app.use("/api/chat/update", updateChatRouter);
 app.use("/api/chat/delete", deleteChatRouter);
+
+registerEvents(app);
 
 app.get("/", async (req, res) => {
   res.send({ message: "welcome" });

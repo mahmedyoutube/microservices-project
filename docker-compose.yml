@@ -12,6 +12,7 @@ services:
             dockerfile: Dockerfile 
         ports:
           - 3001:3001   
+
     todo:   
         build:
             context: ./todo

@@ -4,6 +4,7 @@ interface TodoAttr {
   heading: string;
   description: string;
   userId: string;
+  todoId: string;
 }
 
 // an interface that describe
@@ -31,6 +32,10 @@ const todoSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+    todoId: {
+      type: String,
+      required: true,
     },
   },
   {

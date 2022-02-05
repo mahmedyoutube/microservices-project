@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 interface UserAttr {
   email: string;
+  userId: string;
 }
 
 // an interface that describe
@@ -19,6 +20,10 @@ interface UserDoc extends mongoose.Document, UserAttr {}
 const UserSchema = new mongoose.Schema(
   {
     email: {
+      type: String,
+      required: true,
+    },
+    userId: {
       type: String,
       required: true,
     },

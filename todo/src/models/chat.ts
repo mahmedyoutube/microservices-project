@@ -5,6 +5,7 @@ interface ChatAttr {
   fromUserId: string;
   toUserId: string;
   todoId: string;
+  chatId: string;
 }
 
 // an interface that describe
@@ -36,6 +37,10 @@ const chatSchema = new mongoose.Schema(
     toUserId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+    chatId: {
+      type: String,
+      required: true,
     },
   },
   {

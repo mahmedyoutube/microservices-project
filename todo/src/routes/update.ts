@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import { NotFoundError } from "../errors";
+import { updateTodoEvent } from "../events";
 import { currentUser, requireAuth } from "../middlewares";
 import { Todo } from "../models/todo";
 
@@ -26,6 +27,8 @@ router.patch(
     todo!.description = description;
 
     await todo.save();
+
+    updateTodoEvent({ heading, description, todoId: todo.id });
 
     res.send(todo);
   }

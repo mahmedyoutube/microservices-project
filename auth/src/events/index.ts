@@ -1,1 +1,1 @@
-export * from "./sendUserGenerationEvent";
+export * from "./sendUserEvent";

@@ -41,7 +41,7 @@ router.post(
       process.env.JWT_SECRET!
     );
 
-    sendUserGenerationEvent({ email: user.email });
+    sendUserGenerationEvent({ email: user.email, userId: user.id });
 
     res.send({ token: userJwt });
 

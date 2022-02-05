@@ -10,6 +10,7 @@ import {
   deleteTodoRouter,
   updateTodoRouter,
 } from "./routes";
+import { registerEvents } from "./events";
 
 const app = express();
 // app.set("trust proxy", true);
@@ -26,6 +27,7 @@ app.use("/api/todo", allTodoRouter);
 app.use("/api/todo/create", createTodoRouter);
 app.use("/api/todo/update", updateTodoRouter);
 app.use("/api/todo/delete", deleteTodoRouter);
+registerEvents(app);
 
 app.get("/", async (req, res) => {
   res.send({ message: "welcome" });
