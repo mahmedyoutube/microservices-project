@@ -14,10 +14,7 @@ interface UserModel extends mongoose.Model<UserDoc> {
 // mongoose returning object is different
 // therefore we need to check its type and properties
 
-interface UserDoc extends mongoose.Document {
-  email: string;
-  password: string;
-}
+interface UserDoc extends mongoose.Document, UserAttr {}
 
 const UserSchema = new mongoose.Schema(
   {

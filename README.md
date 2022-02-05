@@ -9,4 +9,9 @@
 1. docker build -t yourdockerusername/serviceName . (example mahmedyoutube/auth, mahmedyoutube/chat and so on) 
 2. docker run -p mappingUniquePort:servicePort yourdockerusername/serviceName
 
+#### Shortcut
+
+1. docker compose up
+2. docker compose down
+
 
