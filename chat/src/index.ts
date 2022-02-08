@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 require("dotenv").config({});
 import { app } from "./app";
+import "./events/connection"; //initialize broker
 
 const start = async () => {
   console.log("starting up...");

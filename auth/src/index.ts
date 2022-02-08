@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 require("dotenv").config({});
 import { app } from "./app";
+import "./events/connection"; // to initialize connection
 
 const start = async () => {
   console.log("starting up...");
