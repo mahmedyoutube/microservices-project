@@ -1,5 +1,6 @@
 import amqp from "amqplib";
 import configs from "../configs";
+import Subscribe from "./subscribers";
 
 class Connection {
   private _amqp?: amqp.Connection;
@@ -42,7 +43,8 @@ class Connection {
     const isPublish = await this.channel?.publish(
       this.exchangeName,
       "",
-      Buffer.from(msg)
+      Buffer.from(msg),
+      { persistent: true }
     );
 
     console.log(` ======== is message published ? ${isPublish}`);
@@ -74,7 +76,7 @@ class Connection {
             `message content for this ${this.qName} = `,
             msg.content.toString()
           );
-          return this.channel!.ack(msg);
+          new Subscribe(msg);
         }
       },
       {

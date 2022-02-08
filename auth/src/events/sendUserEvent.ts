@@ -1,12 +1,17 @@
 import axios from "axios";
 import con from "./connection";
+import { eventTypes } from "./eventTypes";
 
 export const sendUserGenerationEvent = async (body: {
   email: string;
   userId: string;
 }) => {
   con.publish(
-    JSON.stringify({ fromService: process.env.SERVICE_NAME!, ...body })
+    JSON.stringify({
+      fromService: process.env.SERVICE_NAME!,
+      type: eventTypes.CREATED,
+      ...body,
+    })
   );
   // try {
   //   axios.post("http://chat:3001/events/user", body); // chat service

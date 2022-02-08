@@ -1,5 +1,6 @@
 import amqp from "amqplib";
 import configs from "../configs";
+import Subscribe from "./subscribers";
 
 class Connection {
   private _amqp?: amqp.Connection;
@@ -11,6 +12,15 @@ class Connection {
 
   constructor() {
     this.setup();
+  }
+
+  async setup() {
+    await this.connect();
+    await this.createChannel();
+    await this.assertExchange();
+    await this.assertQueue();
+    await this.bindQueue();
+    await this.subscribe();
   }
 
   get con() {
@@ -73,23 +83,17 @@ class Connection {
             console.log(" ========= same service sent this event =========");
             return this.channel!.ack(msg);
           }
-
-          this.channel?.ack(msg);
+          console.log(
+            `message content for this ${this.qName} = `,
+            msg.content.toString()
+          );
+          new Subscribe(msg);
         }
       },
       {
         noAck: false,
       }
     );
-  }
-
-  async setup() {
-    await this.connect();
-    await this.createChannel();
-    await this.assertExchange();
-    await this.assertQueue();
-    await this.bindQueue();
-    await this.subscribe();
   }
 }
 

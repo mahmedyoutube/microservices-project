@@ -1,17 +1,36 @@
-import express, { Request, Response } from "express";
-import { Chat } from "../../models/chat";
-import mongoose from "mongoose";
 import { User } from "../../models/user";
+import { eventTypes } from "../eventTypes";
+import con from "../connection";
 
-const router = express.Router();
+interface contentType {
+  email: string;
+  userId: string;
+  type: eventTypes;
+}
 
-router.post("/", async (req: Request, res: Response) => {
-  const { email, userId } = req.body;
+class AuthEvent {
+  constructor(private content: contentType, private ack: () => void) {
+    this.perfomeOperations(this.content.type);
+  }
 
-  console.log(" =========== auth event received in chat service ============== ", req.body);
-  const user = User.build({ email, userId });
-  await user.save();
-  res.send("done");
-});
+  async perfomeOperations(type: eventTypes) {
+    switch (type) {
+      case eventTypes.CREATED: {
+        await this.insertRecord();
+      }
+      default:
+        return;
+    }
+  }
 
-export { router as authEvent };
+  async insertRecord() {
+    const user = User.build({
+      email: this.content.email,
+      userId: this.content.userId,
+    });
+    await user.save();
+    this.ack();
+  }
+}
+
+export default AuthEvent;

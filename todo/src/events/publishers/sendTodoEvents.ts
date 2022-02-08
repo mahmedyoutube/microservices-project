@@ -1,4 +1,7 @@
 import axios from "axios";
+import configs from "../../configs";
+import con from "../connection";
+import { eventTypes } from "../eventTypes";
 
 export const sendTodoEvent = (body: {
   heading: string;
@@ -6,12 +9,13 @@ export const sendTodoEvent = (body: {
   userId: string;
   todoId: string;
 }) => {
-  try {
-    axios.post("http://chat:3001/events/todo", body); // todo service
-  } catch (err) {
-    console.log("event did not send. Please try again later ", err);
-  }
-  return;
+  con.publish(
+    JSON.stringify({
+      fromService: configs.myServiceName,
+      type: eventTypes.CREATED,
+      ...body,
+    })
+  );
 };
 
 export const updateTodoEvent = (body: {
@@ -19,19 +23,21 @@ export const updateTodoEvent = (body: {
   description: string;
   todoId: string;
 }) => {
-  try {
-    axios.patch("http://chat:3001/events/todo", body); // todo service
-  } catch (err) {
-    console.log("event did not send. Please try again later ", err);
-  }
-  return;
+  con.publish(
+    JSON.stringify({
+      fromService: configs.myServiceName,
+      type: eventTypes.UPDATED,
+      ...body,
+    })
+  );
 };
 
 export const deleteTodoEvent = (todoId: string) => {
-  try {
-    axios.delete(`http://chat:3001/events/todo/${todoId}`); // todo service
-  } catch (err) {
-    console.log("event did not send. Please try again later ", err);
-  }
-  return;
+  con.publish(
+    JSON.stringify({
+      fromService: configs.myServiceName,
+      type: eventTypes.DELETED,
+      todoId,
+    })
+  );
 };
