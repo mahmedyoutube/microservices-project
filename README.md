@@ -28,6 +28,10 @@ services are connected with each - recommended
 
 containing docker + kubernetes code
 
+
+####  dockerfile improvements branch
+
+
 #### dev branch 
 
 complete code which you can use for development on your localhost
