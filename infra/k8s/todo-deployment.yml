@@ -44,5 +44,5 @@ spec:
             - name: BROKER_URL
               valueFrom:
                 secretKeyRef:
-                  name: borkerurl
+                  name: brokerurl
                   key: BROKER_URL

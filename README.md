@@ -17,5 +17,7 @@
 7. command to install ingress-nginx ``` kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml```
 8. command to add secrets in an env ``` kubectl create secret generic secretName --from-literal key=value ```
 
+9. print secrets value ``` kubectl get secret secretName -o jsonpath='{.data}' ```
+10. value will be in the form of base64, you need to decode this value in order to see original value
 
 
