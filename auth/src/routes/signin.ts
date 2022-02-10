@@ -35,9 +35,7 @@ router.post(
       throw new BadRequestError("Invalid credentials");
     }
 
-    // generate jwt
-
-    console.log("process.env.is ", process.env.JWT_KEY);
+   
 
     const userJwt = jwt.sign(
       {

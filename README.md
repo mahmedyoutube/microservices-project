@@ -15,7 +15,7 @@
 6. ingress-nginx docs ( https://kubernetes.github.io/ingress-nginx/deploy/#quick-start ) 
 
 7. command to install ingress-nginx ``` kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml```
-8. done
+8. command to add secrets in an env ``` kubectl create secret generic secretName --from-literal key=value ```
 
 
 

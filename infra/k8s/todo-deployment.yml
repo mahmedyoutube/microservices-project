@@ -17,3 +17,32 @@ spec:
           image: mahmedmushtaq/todo
           ports:
             - containerPort: 3002
+          env:
+            - name: PORT
+              value: '3002'
+            - name: BROKER_QUEUE_NAME
+              value: q_todo
+            - name:  EXCHANGE_NAME
+              value: events  
+            - name: SERVICE_NAME
+              value: todo
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwtsecret
+                  key: JWT_SECRET
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwtkey
+                  key: JWT_KEY
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodbtodouri
+                  key: MONGODB_URI
+            - name: BROKER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: borkerurl
+                  key: BROKER_URL

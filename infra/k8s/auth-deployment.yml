@@ -17,3 +17,32 @@ spec:
           image: mahmedmushtaq/microservices-app-auth
           ports:
             - containerPort: 3000
+          env:
+            - name: PORT
+              value: '3000'
+            - name: BROKER_QUEUE_NAME
+              value: q_auth
+            - name:  EXCHANGE_NAME
+              value: events  
+            - name: SERVICE_NAME
+              value: auth
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwtsecret
+                  key: JWT_SECRET
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwtkey
+                  key: JWT_KEY
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodbauthuri
+                  key: MONGODB_URI
+            - name: BROKER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: borkerurl
+                  key: BROKER_URL
