@@ -19,11 +19,11 @@ app.use(json());
 //     secure: process.env.NODE_ENV !== 'test',
 //   })
 // );
-app.use("/api/users", allUserRouter);
-app.use("/api/users/currentUser", currentUserRouter);
-app.use("/api/users/signin", signInRouter);
-app.use("/api/users/signout", signOutRouter);
-app.use("/api/users/signup", signUpRouter);
+app.use("/", allUserRouter);
+app.use("/currentUser", currentUserRouter);
+app.use("/signin", signInRouter);
+app.use("/signout", signOutRouter);
+app.use("/signup", signUpRouter);
 
 app.get("/", async (req, res) => {
   res.send({ message: "welcome" });

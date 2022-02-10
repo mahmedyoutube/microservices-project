@@ -22,10 +22,10 @@ app.use(json());
 // );
 
 // related to todo feature
-app.use("/api/todo", allTodoRouter);
-app.use("/api/todo/create", createTodoRouter);
-app.use("/api/todo/update", updateTodoRouter);
-app.use("/api/todo/delete", deleteTodoRouter);
+app.use("/", allTodoRouter);
+app.use("/create", createTodoRouter);
+app.use("/update", updateTodoRouter);
+app.use("/delete", deleteTodoRouter);
 
 app.get("/", async (req, res) => {
   res.send({ message: "welcome" });

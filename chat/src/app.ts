@@ -22,10 +22,10 @@ app.use(json());
 // );
 
 // related to chat feature
-app.use("/api/chat", allChatRouter);
-app.use("/api/chat/create", createChatRouter);
-app.use("/api/chat/update", updateChatRouter);
-app.use("/api/chat/delete", deleteChatRouter);
+app.use("/", allChatRouter);
+app.use("/create", createChatRouter);
+app.use("/update", updateChatRouter);
+app.use("/delete", deleteChatRouter);
 
 app.get("/", async (req, res) => {
   res.send({ message: "welcome" });
