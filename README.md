@@ -1,19 +1,21 @@
-## services-simple-com Branch
+## docker-kubernetes Branch
 
-1. In this branch, each service is connected with each other by rabbitmq based event bus
-2. Best for smaller & large projects
+1. kubernetes implemented
 
-### Please keep in mind
+### Necessary Commands
+1. Please checked the kuberenete option which is present on kubernetes desktop app
 
-1. make sure your rabbitmq server is running either on localhost or online server
-2. if your rabbitmq server is running on localhost then your url is amqp://localhost and if it is running on online server ( aws , digitalocean or an another) then its url is amqp or amqps://username:password@domain
-3. I am using aws so its url is amqps://username:password@longrandomstringgeneratedbyaws.mq.us-east-2.amazonaws.com:5671 
+2. Please build and push each service docker file
 
+3. replace docker image name which is present inside infra/k8s with your docker image name
+4. optional ( you can skip step 2 & 3 if you want. Then you will work with my default image which is already present in the code )
 
+5.  ``` kubectl apply -f infra/k8s ```
 
-#### Commands
+6. ingress-nginx docs ( https://kubernetes.github.io/ingress-nginx/deploy/#quick-start ) 
 
-1. docker compose up --build
-2. docker compose down
+7. command to install ingress-nginx ``` kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml```
+8. done
+
 
 
