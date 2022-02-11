@@ -19,5 +19,6 @@
 
 9. print secrets value ``` kubectl get secret secretName -o jsonpath='{.data}' ```
 10. value will be in the form of base64, you need to decode this value in order to see original value
+11. deployment ``` eksctl create cluster --name first-eks --nodegroup-name standard-workers --node-type t2.nano --nodes 3 --nodes-min 3 --nodes-max 3 --profile eksadmin ```
 
 
